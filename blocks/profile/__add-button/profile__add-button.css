@@ -3,14 +3,15 @@
     height: 50px;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
-    background: url(./././images/edit-button.svg) no-repeat center;
+    background: url(../../../images/edit-button.svg) no-repeat center;
     margin: 75px 0 0 auto;
 }
 
 @media screen and (max-width: 767px) {
     .profile__add-button {
-        margin-top: 36px;
+        margin: 36px auto 0;
         width: 100%;
+        max-width: 282px;
     }
 }
 

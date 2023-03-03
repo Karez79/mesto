@@ -19,7 +19,7 @@ formElement.addEventListener('submit', handleFormSubmit);
 
 function openPopup() {
   popup.classList.add('popup_opened');
-  nameInput.value = profileTitle.textContent;
+  nameInput.value = profileTitile.textContent;
   jobInput.value = profileSubbtitle.textContent;
 }
 

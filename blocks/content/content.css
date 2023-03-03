@@ -1,11 +1,11 @@
 .content {
     max-width: 880px;
     margin: 0 auto 0;
+    
 }
 
 @media screen and (max-width: 767px) {
     .content {
         margin: 42px 19px 0;
-        max-width: 282px;
     }
 }
