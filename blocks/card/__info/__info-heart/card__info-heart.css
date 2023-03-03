@@ -1,0 +1,17 @@
+.card__info-heart {
+    background: url(./././images/heart.svg) center no-repeat;
+    height: 19px;
+    border: none;
+    width: 23px;
+}
+.card__info-heart:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.card__info-heart:active {
+    height: 19px;
+    border: none;
+    width: 23px;
+    background: url(./././images/Union.svg);
+}
