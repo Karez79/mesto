@@ -3,15 +3,14 @@
     object-fit: contain;
     width: 142px;
     height: 33px;
-
-
+    cursor: pointer;
+    
 }
 
 @media screen and (max-width: 767px) {
     .header__logo {
         width: 104px;
         height: 25px;
-        padding-top: 28px;
-        padding-left: 27px;
+        padding:10px 0 30px 27px;
     }
 }
