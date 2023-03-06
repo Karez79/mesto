@@ -12,7 +12,7 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   profileTitile.textContent = nameInput.value;
   profileSubbtitle.textContent = jobInput.value;
-  closePopup('popup_opened');
+  closePopup();
 }
 
 function openPopup() {
