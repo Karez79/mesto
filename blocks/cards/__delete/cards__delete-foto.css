@@ -1,0 +1,16 @@
+.cards__delete-foto {
+    padding: 0;
+    width: 18px;
+    height: 19px;
+    border: none;
+    background-image: url('../../../images/delete.svg');
+    background-color: transparent;
+    position: relative;
+    top: 33px;
+    left:254px;
+}
+
+.elements__delete-foto:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

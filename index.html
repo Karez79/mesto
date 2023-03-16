@@ -12,7 +12,8 @@
 <body class="page">
 
     <header class="header">
-        <a class="header__link" href="https://karez79.github.io/mesto/"> <img src="./images/logo/logo.svg" class="header__logo" alt="Логотип Место."></a>
+        <a class="header__link" href="https://karez79.github.io/mesto/"> <img src="./images/logo/logo.svg"
+                class="header__logo" alt="Логотип Место."></a>
     </header>
 
     <main class="content">
@@ -34,24 +35,29 @@
 
         <section class="elements">
             <ul class="cards">
-                <li  class="card">
+                
+                <li class="card">
+                    <button class="cards__delete-foto" type="button"></button>
                     <img class="cards__image" src="./images/tihmorj.jpeg" alt="Тихокеанский морж.">
+
                     <div class="card__info">
                         <h2 class="card__info-title">Тихокеанский морж</h2>
-                        <button class="card__info-heart" type="button"></button>
+                        <button class="card__info-heart" type="button"> </button>
                     </div>
                 </li>
 
 
                 <li class="card">
+                    <button class="cards__delete-foto" type="button"></button>
                     <img class="cards__image" src="./images/atlantmorj.jpeg" alt="Атлантический морж.">
                     <div class="card__info">
                         <h2 class="card__info-title">Атлантический морж</h2>
-                        <button class="card__info-heart" type="button"></button>
+                        <button class="card__info-heart"" type=" button"></button>
                     </div>
                 </li>
 
                 <li class="card">
+                    <button class="cards__delete-foto" type="button"></button>
                     <img class="cards__image" src="./images/laptmorj.jpeg" alt="Лаптевый морж.">
                     <div class="card__info">
                         <h2 class="card__info-title">Лапетвый морж</h2>
@@ -60,6 +66,7 @@
                 </li>
 
                 <li class="card">
+                    <button class="cards__delete-foto" type="button"></button>
                     <img class="cards__image" src="./images/newzelandkot.jpeg" alt="Новозеландский морж.">
                     <div class="card__info">
                         <h2 class="card__info-title">Новозеландский морж</h2>
@@ -68,6 +75,7 @@
                 </li>
 
                 <li class="card">
+                    <button class="cards__delete-foto" type="button"></button>
                     <img class="cards__image" src="./images/kapskot.jpeg" alt="Капский морской кот.">
                     <div class="card__info">
                         <h2 class="card__info-title">Капский морской кот</h2>
@@ -76,6 +84,7 @@
                 </li>
 
                 <li class="card">
+                    <button class="cards__delete-foto" type="button"></button>
                     <img class="cards__image" src="./images/fernandkot.jpeg" alt="Фернандесский морской кот">
                     <div class="card__info">
                         <h2 class="card__info-title">Фернандесский морской кот</h2>
@@ -87,15 +96,15 @@
         </section>
 
 
-       
+
     </main>
 
     <footer class="footer">
         <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
-        <button class="popup__close-button" type="button"></button>
+    <section class="popup" id="profileEdit">
+        <button class="popup__close-button" type="button" id="popup__close-button"></button>
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form name="popup__form" class="popup__form">
@@ -106,10 +115,36 @@
         </div>
     </section>
 
+
+    <section class="popup" id="cardADD">
+        <button class="popup__close-addbutton" type="button"></button>
+        <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+            <form name="popup__form" class="popup__form" id="cardform">
+                <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Название">
+                <input type="text" class="popup__input popup__input_type_linkimage" name="linkimage"
+                    placeholder="Ссылка на картинку">
+                <button type="submit" class="popup__create-button">Создать</button>
+            </form>
+        </div>
+    </section>
+
+    <template id="cardtemplate">
+
+        <ul class="cards">
+            <li class="card">
+                <button class="cards__delete-foto" type="button"></button>
+                <img class="cards__image">
+                <div class="card__info">
+                    <h2 class="card__info-title">
+                    <button class="card__info-heart" type="button"> </button>
+                </div>
+            </li>
+
+    </template>
     <script src="./scripts/scrips.js"></script>
 
 
 </body>
 
 </html>
-
