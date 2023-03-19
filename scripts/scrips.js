@@ -29,12 +29,13 @@ openPopupButton.addEventListener('click', () => {
   openPopup(popupProfileEdit);
   nameInput.value = profileTitile.textContent;
   jobInput.value = profileSubbtitle.textContent;
-  
+
 });
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
@@ -61,7 +62,7 @@ function handleFormSubmit(evt) {
 cardButtonAdd.addEventListener('click', () => {
   openPopup(cardPopupAdd);
   document.getElementById("cardform").reset();
-  
+
 });
 
 
@@ -74,7 +75,7 @@ function handleFormCardAddSubmit(evt) {
     link: link
   }
   createCardManual(card);
-  countCards();
+  // countCards();
   closePopup(cardPopupAdd);
 }
 
@@ -124,7 +125,8 @@ const createCard = (fotocard) => {
   deleteButtonCard.addEventListener('click', handleDeleteButtonCklik);
   const changeColor = newCard.querySelector('.card__info-heart');
   changeColor.addEventListener('click', handleLikeImageCklik);
-
+  const openPopupZoomPhoto = newCard.querySelector('.cards__image');
+  openZoomPhoto(openPopupZoomPhoto);
   return newCard;
 }
 
@@ -136,7 +138,7 @@ const createCardAuto = (fotocard) => {
 }
 
 initialCards.forEach(createCardAuto);
-countCards();
+// countCards();
 
 function handleLikeImageCklik(event) {
   event.target.classList.toggle('card__info-heart_active');
@@ -148,6 +150,10 @@ function handleDeleteButtonCklik(event) {
   card.remove();
 }
 
+popupBigFotoCloseBtn.addEventListener('click', () => {
+  closePopup(popupBigFoto);
+});
+
 function openZoomPhoto(photo) {
   photo.addEventListener('click', e => {
     openPopup(popupBigFoto);
@@ -157,12 +163,12 @@ function openZoomPhoto(photo) {
   })
 };
 
-function countCards() {
-  const openPopupZoomphotos = document.querySelectorAll('.cards__image');
-  openPopupZoomphotos.forEach(photo => {
-    openZoomPhoto(photo);
-  })
-};
+// function countCards() {
+//   const openPopupZoomphotos = document.querySelectorAll('.cards__image');
+//   openPopupZoomphotos.forEach(photo => {
+//     openZoomPhoto(photo);
+//   })
+// };
 
 // popupBigFotoCloseBtn.addEventListener('click', () => {
 //   closePopup(popupBigFoto);
