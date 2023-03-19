@@ -1,14 +1,14 @@
-.popup__close-addbutton {
+.popup__close-zoombutton {
     width: 32px;
     height: 32px;
     background: url(../../../images/Close\ Icon.svg) center no-repeat;
     border: none;
-    margin-left: 471px;
+    margin-left: 1400px;
     transition: opacity 0.3s linear;
 }
 
 @media (max-width: 767px) {
-    .popup__close-addbutton {
+    .popup__close-zoomdbutton {
         background-size: cover;
         width: 20px;
         height: 20px;
@@ -16,7 +16,7 @@
     }
 }
 
-.popup__close-addbutton:hover {
+.popup__close-zoombutton:hover {
     opacity: 0.6;
     cursor: pointer;
 }

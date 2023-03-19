@@ -35,7 +35,15 @@
 
         <section class="elements">
             <ul class="cards">
-                
+            </ul>
+        </section>
+
+
+
+    </main>
+    <!-------
+            <ul class="cards">
+
                 <li class="card">
                     <button class="cards__delete-foto" type="button"></button>
                     <img class="cards__image" src="./images/tihmorj.jpeg" alt="Тихокеанский морж.">
@@ -93,11 +101,10 @@
                 </li>
 
             </ul>
-        </section>
+
+          <!----->
 
 
-
-    </main>
 
     <footer class="footer">
         <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
@@ -129,19 +136,32 @@
         </div>
     </section>
 
-    <template id="cardtemplate">
 
-        <ul class="cards">
-            <li class="card">
-                <button class="cards__delete-foto" type="button"></button>
-                <img class="cards__image">
-                <div class="card__info">
-                    <h2 class="card__info-title">
-                    <button class="card__info-heart" type="button"> </button>
-                </div>
-            </li>
+    <section class="popup" id="zoomfoto">
+        <div class="popup__container-zoom"></div>
+        <button type="button" class="popup__close-zoombutton"></button>
+        <h3 class="popup__title-zoom"></h3>
+        <img class="popup__zoom">
+        </div>
+
+    </section>
+
+    <template id="cardTemplate">
+
+
+        <li class="card">
+            <button class="cards__delete-foto" type="button"></button>
+            <img class="cards__image">
+            <div class="card__info">
+                <h2 class="card__info-title"></h2>
+                <button class="card__info-heart" type="button"> </button>
+            </div>
+        </li>
+
 
     </template>
+
+
     <script src="./scripts/scrips.js"></script>
 
 

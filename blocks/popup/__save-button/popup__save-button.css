@@ -11,6 +11,7 @@
     color: #ffffff;
     transition: opacity 0.3s linear;
     margin-top: 26px;
+    
 }
 
 @media (max-width: 767px) {

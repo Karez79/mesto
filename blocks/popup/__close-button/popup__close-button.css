@@ -4,6 +4,7 @@
     background: url(../../../images/Close\ Icon.svg) center no-repeat;
     border: none;
     margin-left: 471px;
+    transition: opacity 0.3s linear;
 }
 
 @media (max-width: 767px) {
