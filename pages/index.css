@@ -45,4 +45,4 @@
 @import url(../blocks/popup/__container/popup__container-zoom.css);
 @import url(../blocks/popup/__zoom/popup__zoom.css);
 @import url(../blocks/popup/__title/popup__titile-zoom.css);
-@import url(../blocks/popup/__close-button/popup_close-zoombutton.css);
+@import url(../blocks/popup/__close-button/popup__close-zoombutton.css);
