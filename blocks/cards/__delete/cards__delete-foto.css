@@ -10,7 +10,7 @@
     left:254px;
 }
 
-.elements__delete-foto:hover {
+.cards__delete-foto:hover {
     opacity: 0.6;
     cursor: pointer;
 }

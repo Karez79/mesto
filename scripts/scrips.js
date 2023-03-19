@@ -97,7 +97,7 @@ const initialCards = [
   {
     name: 'Новозеландский морж.',
     link: './images/newzelandkot.jpeg',
-    alt: '>Новозеландский морж.'
+    alt: 'Новозеландский морж.'
   },
   {
     name: 'Капский морской кот.',
