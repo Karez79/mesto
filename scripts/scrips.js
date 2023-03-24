@@ -36,7 +36,7 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener("keydown", closePopupByEsc);
   document.addEventListener('mousedown', closePopupByOverlay);
- 
+
 }
 
 function closePopup(popup) {
@@ -69,11 +69,14 @@ closeButtons.forEach((button) => {
 //   closePopup(popupProfileEdit);
 // });
 
+const cardButtonPopupAdd = popupProfileEdit.querySelector('.popup__save-button');
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
   profileTitile.textContent = nameInput.value;
   profileSubbtitle.textContent = jobInput.value;
+  cardButtonPopupAdd.disabled = true;
+  cardButtonPopupAdd.classList.add('popup__save-button_valid');
   closePopup(popupProfileEdit);
 }
 
