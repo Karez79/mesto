@@ -9,12 +9,12 @@ const hideInputError = (errorTextElement, activeErrorClass) =>{
 }
 
 const disableButton = (submitButton, validSubmitButtonClass) =>{
-submitButton.classList.remove(validSubmitButtonClass);
+submitButton.classList.add( validSubmitButtonClass);
 submitButton.disabled = true;
 }
 
 const enebleButton = (submitButton, validSubmitButtonClass) =>{
-    submitButton.classList.add(validSubmitButtonClass);
+    submitButton.classList.remove(validSubmitButtonClass);
     submitButton.disabled = false;
     }
 
@@ -31,7 +31,7 @@ else{
 }
 
 const toggleButtonState = (submitButton) =>{
- 
+ console.log(submitButton);
     if(true){
 enebleButton(submitButton, validSubmitButtonClass);
     }else{
@@ -40,7 +40,7 @@ disableButton(submitButton,  validSubmitButtonClass);
 
 }
 
-const setEventListeners = (form, inputList, errorClassTemplate, activeErrorClass,submitButton) => {
+const setEventListeners = (form, inputList, errorClassTemplate, activeErrorClass,submitButton, submitButtonSelector) => {
     form.addEventListener("submit", (e) =>{
         e.preventDefault();
     })
@@ -67,6 +67,7 @@ enableValidation({
     inputSelector: ".popup__input",
     errorClassTemplate: ".popup__input-error_type_",
     activeErrorClass: "popup__input-error",
-    submitButtonSelector: ".popup__save-button",
-    validSubmitButtonClass: ".popup__save-button_valid",
+    validSubmitButtonClass: ".popup__save-button",
+    submitButtonSelector: ".popup__save-button_active",
 });
+
