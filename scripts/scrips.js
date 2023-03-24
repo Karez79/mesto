@@ -69,10 +69,14 @@ closeButtons.forEach((button) => {
 //   closePopup(popupProfileEdit);
 // });
 
+const addCardSubmitButton = popupProfileEdit.querySelector('.popup__save-button');
+
 function handleFormSubmit(evt) {
   evt.preventDefault();
   profileTitile.textContent = nameInput.value;
   profileSubbtitle.textContent = jobInput.value;
+  addCardSubmitButton.disabled = true;
+  addCardSubmitButton.classList.add('popup__save-button_valid');
   closePopup(popupProfileEdit);
 }
 
