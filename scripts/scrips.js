@@ -34,16 +34,35 @@ openPopupButton.addEventListener('click', () => {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener("keydown", closePopupByEsc);
+  document.addEventListener('mousedown', closePopupByOverlay);
+ 
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener("keydown", closePopupByEsc);
 }
+
+function closePopupByEsc(evt) {
+  if (evt.key === "Escape") {
+    const closePopupsByEsc = document.querySelector(".popup_opened");
+    closePopup(closePopupsByEsc);
+  }
+}
+
+function closePopupByOverlay (evt) {
+  const  closePopupsByOverlay = document.querySelector('.popup_opened');
+  if(evt.target === closePopupsByOverlay) {
+      closePopup(closePopupsByOverlay);
+  }
+};
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+
 
 
 // closePopupButton.addEventListener('click', () => {
@@ -176,3 +195,4 @@ function openZoomPhoto(photo) {
 popupEditProdileSave.addEventListener('submit', handleFormSubmit);
 
 cardPopupAddForm.addEventListener('submit', handleFormCardAddSubmit);
+
