@@ -7,10 +7,10 @@ const hideInputError = (input, errorElement, errorClass) => {
     errorElement.textContent = "";
 }
 const disableButton = (submitButton, inactiveButtonClass) => {
-    submitButton.classList.remove(inactiveButtonClass);
+    submitButton.classList.remove(inactiveButtonClass,disabled);
 }
 const enableButton = (submitButton, inactiveButtonClass) => {
-    submitButton.classList.add(inactiveButtonClass);
+    submitButton.classList.add(inactiveButtonClass,disabled);
 }
 
 function getTextLengthMessage(input) {

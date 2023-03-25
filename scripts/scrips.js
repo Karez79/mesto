@@ -1,27 +1,29 @@
 const profileTitile = document.querySelector('.profile__title');
 const profileSubbtitle = document.querySelector('.profile__subtitle');
-const saveBtn = document.querySelector('.popup__save-button');
+// const saveBtn = document.querySelector('.popup__save-button');
 const popupProfileEdit = document.querySelector('#profileEdit');
 const openPopupButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.popup__input_type_title');
 const jobInput = document.querySelector('.popup__input_type_subtitle');
-const closePopupButton = document.querySelector('.popup__close-button');
+// const closePopupButton = document.querySelector('.popup__close-button');
 const popupEditProdileSave = document.querySelector('.popup__form');
-const cardButtonAdd = document.querySelector('.profile__add-button')
+const cardButtonAdd = document.querySelector('.profile__add-button');
 const cardPopupAdd = document.querySelector('#cardADD');
 const cardPopupAddForm = document.querySelector('#cardform');
-const closeButtonAdd = document.querySelector('.popup__close-addbutton');
+// const closeButtonAdd = document.querySelector('.popup__close-addbutton');
 const cardsContainer = document.querySelector('.elements');
 const element = document.querySelector('.cards');
 const popupBigFoto = document.querySelector('#zoomfoto');
 const popupBigFotoTitle = document.querySelector('.popup__title-zoom');
 const popupBigFotoImage = document.querySelector('.popup__zoom');
-const popupBigFotoCloseBtn = document.querySelector('.popup__close-zoombutton');
+// const popupBigFotoCloseBtn = document.querySelector('.popup__close-zoombutton');
 const popup = document.querySelector('.popup');
 const cardName = document.querySelector('.popup__input_type_name');
 const cardImage = document.querySelector('.popup__input_type_linkimage');
 const cardTemplate = document.querySelector('#cardTemplate');
 const closeButtons = document.querySelectorAll('.popup__close');
+const cardButtonPopupAdd = popupProfileEdit.querySelector('.popup__save-button');
+const popups = document.querySelectorAll('.popup');
 
 //Popup редактирования и сохранения профиля//
 
@@ -35,7 +37,7 @@ openPopupButton.addEventListener('click', () => {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener("keydown", closePopupByEsc);
-  document.addEventListener('mousedown', closePopupByOverlay);
+
 
 }
 
@@ -44,6 +46,21 @@ function closePopup(popup) {
   document.removeEventListener("keydown", closePopupByEsc);
 }
 
+
+
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  })
+})
+
+
+
 function closePopupByEsc(evt) {
   if (evt.key === "Escape") {
     const closePopupsByEsc = document.querySelector(".popup_opened");
@@ -51,12 +68,12 @@ function closePopupByEsc(evt) {
   }
 }
 
-function closePopupByOverlay (evt) {
-  const  closePopupsByOverlay = document.querySelector('.popup_opened');
-  if(evt.target === closePopupsByOverlay) {
-      closePopup(closePopupsByOverlay);
-  }
-};
+// function closePopupByOverlay (evt) {
+//   const  closePopupsByOverlay = document.querySelector('.popup_opened');
+//   if(evt.target === closePopupsByOverlay) {
+//       closePopup(closePopupsByOverlay);
+//   }
+// };
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
@@ -69,7 +86,7 @@ closeButtons.forEach((button) => {
 //   closePopup(popupProfileEdit);
 // });
 
-const cardButtonPopupAdd = popupProfileEdit.querySelector('.popup__save-button');
+
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -84,7 +101,7 @@ function handleFormSubmit(evt) {
 
 cardButtonAdd.addEventListener('click', () => {
   openPopup(cardPopupAdd);
-  document.getElementById("cardform").reset();
+  cardPopupAddForm.reset();
 
 });
 
@@ -173,9 +190,9 @@ function handleDeleteButtonCklik(event) {
   card.remove();
 }
 
-popupBigFotoCloseBtn.addEventListener('click', () => {
-  closePopup(popupBigFoto);
-});
+// popupBigFotoCloseBtn.addEventListener('click', () => {
+//   closePopup(popupBigFoto);
+// });
 
 function openZoomPhoto(photo) {
   photo.addEventListener('click', e => {
@@ -200,3 +217,4 @@ popupEditProdileSave.addEventListener('submit', handleFormSubmit);
 
 cardPopupAddForm.addEventListener('submit', handleFormCardAddSubmit);
 
+// document.addEventListener('mousedown', closePopupByOverlay);
