@@ -37,6 +37,12 @@ openPopupButton.addEventListener('click', () => {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener("keydown", closePopupByEsc);
+//   submitButton.popup.querySelector(".popup__button");
+// submitButton.setAttribute('disabled', true);
+// submitButton.classList.add ('.popup__button_disabled');
+const popupBtn = popup.querySelector('.popup__button');
+popupBtn.classList.add("popup__button_disabled");
+popupBtn.disabled = true;
 
 
 }
