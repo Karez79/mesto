@@ -24,6 +24,7 @@ const cardTemplate = document.querySelector('#cardTemplate');
 const closeButtons = document.querySelectorAll('.popup__close');
 const cardButtonPopupAdd = popupProfileEdit.querySelector('.popup__save-button');
 const popups = document.querySelectorAll('.popup');
+const popupBtn = popup.querySelector('.popup__button');
 
 //Popup редактирования и сохранения профиля//
 
@@ -37,10 +38,6 @@ openPopupButton.addEventListener('click', () => {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener("keydown", closePopupByEsc);
-//   submitButton.popup.querySelector(".popup__button");
-// submitButton.setAttribute('disabled', true);
-// submitButton.classList.add ('.popup__button_disabled');
-const popupBtn = popup.querySelector('.popup__button');
 popupBtn.classList.add("popup__button_disabled");
 popupBtn.disabled = true;
 
@@ -98,8 +95,6 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   profileTitile.textContent = nameInput.value;
   profileSubbtitle.textContent = jobInput.value;
-  cardButtonPopupAdd.disabled = true;
-  cardButtonPopupAdd.classList.add('popup__save-button_valid');
   closePopup(popupProfileEdit);
 }
 
