@@ -25,7 +25,7 @@
 @import url(../blocks/card/__info-title/card__info-title.css);
 @import url(../blocks/card/__info-heart/card__info-heart.css);
 @import url(../blocks/card/__info-heart/_active/card__info-heart_active.css);
-@import url(../blocks/cards/__delete/cards__delete-foto.css);
+@import url(../blocks/cards/__delete/cards__delete-photo.css);
 
 
 @import url(../blocks/footer/footer.css);

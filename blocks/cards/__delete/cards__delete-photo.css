@@ -1,4 +1,4 @@
-.cards__delete-foto {
+.cards__delete-photo {
     padding: 0;
     width: 18px;
     height: 19px;
@@ -10,7 +10,7 @@
     left:254px;
 }
 
-.cards__delete-foto:hover {
+.cards__delete-photo:hover {
     opacity: 0.6;
     cursor: pointer;
 }
