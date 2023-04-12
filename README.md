@@ -2,15 +2,18 @@
 
 ### Обзор
 
-Это 4 и 5 спринты от ["Яндекс.Практикум"](https://practicum.yandex.ru/) на курсе ["Веб-разработчик"](https://practicum.yandex.ru/web/).
+Это 4,5,6 и 7 спринты от ["Яндекс.Практикум"](https://practicum.yandex.ru/) на курсе ["Веб-разработчик"](https://practicum.yandex.ru/web/).
 
 * Начали изучать JavaScript и работу с браузером;
 * Знакомство с DOM;
 * Дебаггинг JavaScript;
-* HTML и CSS.
-* Добавление фотографий с помощью JavaScript
-* Открытие и закрытие popup 
-* Освоили тег template
+* HTML и CSS;
+* Добавление фотографий с помощью JavaScript;
+* Открытие и закрытие popup;
+* Освоили тег template;
+* ООП в интерфейсах;
+* Модули в JS;
+* Работа в команде;
 
 [Ссылка на сайт](https://karez79.github.io/mesto/)
 
