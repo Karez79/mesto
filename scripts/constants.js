@@ -3,32 +3,26 @@ const initialCards = [
     {
         name: 'Тихокеанский морж.',
         link: './images/tihmorj.jpeg',
-        alt: 'Тихокеанский морж.'
     },
     {
         name: 'Атлантический морж.',
         link: './images/atlantmorj.jpeg',
-        alt: 'Атлантический морж.'
     },
     {
         name: 'Лапетвый морж.',
         link: './images/laptmorj.jpeg',
-        alt: 'Лаптевый морж.'
     },
     {
         name: 'Новозеландский морж.',
         link: './images/newzelandkot.jpeg',
-        alt: 'Новозеландский морж.'
     },
     {
         name: 'Капский морской кот.',
         link: './images/kapskot.jpeg',
-        alt: 'Капский морской кот.'
     },
     {
         name: 'Фернандесский морской кот.',
         link: './images/fernandkot.jpeg',
-        alt: 'Фернандесский морской кот.'
     }
 ];
 
@@ -38,7 +32,7 @@ const openPopupButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.popup__input_type_title');
 const jobInput = document.querySelector('.popup__input_type_subtitle');
 const addCardButton = document.querySelector('.profile__add-button');
-const element = document.querySelector('.cards');
+const cardsList = document.querySelector('.cards');
 const popupBigFotoTitle = document.querySelector('.popup__title-zoom');
 const popupBigFotoImage = document.querySelector('.popup__zoom');
 const cardName = document.querySelector('.popup__input_type_name');
@@ -72,7 +66,7 @@ export {
     nameInput,
     jobInput,
     addCardButton,
-    element,
+    cardsList,
     popupBigFotoTitle,
     popupBigFotoImage,
     cardName,

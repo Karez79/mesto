@@ -6,7 +6,7 @@ export class Card {
     }
 
     _defineCard() {
-        this._card = this._cardTemplate.content.cloneNode(true);
+        this._card = this._cardTemplate.content.querySelector('.card').cloneNode(true);
     }
 
     _defineCardElements() {
@@ -26,13 +26,12 @@ export class Card {
     }
 
     _handleDeleteButtonClick() {
-        const delCardBtn = this._deleteButtonCard;
-        const card = delCardBtn.closest('.card');
-        card.remove();
+        this._card.remove();
+        this._card = null;
     }
 
     _handleOpenZoomClick() {
-        this._openZoomPhoto(this._cardImage)
+        this._openZoomPhoto(this._photoCard);
     }
 
     _addListeners() {

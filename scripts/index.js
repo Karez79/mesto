@@ -1,28 +1,28 @@
-import  {
-  initialCards,
-  profileTitle,
-  profileSubtitle,
-  openPopupButton,
-  nameInput,
-  jobInput,
+import {
   addCardButton,
-  element,
-  popupBigFotoTitle,
-  popupBigFotoImage,
-  cardName,
+  cardAddForm,
   cardImage,
+  cardName,
+  cardsList,
   cardTemplate,
   closeButtons,
-  popups,
+  formConfig,
+  initialCards,
+  jobInput,
+  nameInput,
+  openPopupButton,
+  popupBigFoto,
+  popupBigFotoImage,
+  popupBigFotoTitle,
   popupCardAdd,
   popupProfileEdit,
-  popupBigFoto,
+  popups,
   profileForm,
-  cardAddForm,
-  formConfig,
+  profileSubtitle,
+  profileTitle,
 } from "./constants.js";
-import { Card } from "./card.js";
-import { FormValidator } from "./formValidator.js";
+import {Card} from "./card.js";
+import {FormValidator} from "./formValidator.js";
 
 const profileFormValidator = new FormValidator(formConfig, profileForm);
 profileFormValidator.enableValidation();
@@ -34,18 +34,9 @@ function openPopup(popup) {
   document.addEventListener("keydown", closePopupByEsc);
 }
 
-function openPopupWithButton(popup) {
-  openPopup(popup);
-  const popupBtn = popup.querySelector('.popup__button');
-  popupBtn.classList.add("popup__button_disabled");
-  popupBtn.disabled = true;
-}
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener("keydown", closePopupByEsc);
-  profileFormValidator.hideErrors();
-  cardAddFormValidator.hideErrors();
 }
 
 function closePopupByEsc(evt) {
@@ -70,33 +61,33 @@ function handleFormCardAddSubmit(evt) {
     name: name,
     link: link
   }
-  createCardManual(card);
+
+  cardsList.prepend(createCard(card));
   closePopup(popupCardAdd);
 }
 
 function openZoomPhoto(photo) {
   openPopup(popupBigFoto);
-  popupBigFotoTitle.textContent = photo.alt;
-  popupBigFotoImage.src = photo.src;
-  popupBigFotoImage.alt = photo.alt;
+  popupBigFotoTitle.textContent = photo.name;
+  popupBigFotoImage.alt = photo.name;
+  popupBigFotoImage.src = photo.link;
 }
 
-function createCardManual(photoCard) {
-  const card = new Card(photoCard, cardTemplate, openZoomPhoto).createCard();
-  element.prepend(card);
-}
-function createCardAuto(photoCard) {
-  const card = new Card(photoCard, cardTemplate, openZoomPhoto).createCard();
-  element.append(card);
+function createCard(photoCard) {
+  return new Card(photoCard, cardTemplate, openZoomPhoto).createCard();
 }
 
-initialCards.forEach(createCardAuto);
+initialCards.forEach(card => {
+  cardsList.append(createCard(card))
+});
 
 //Popup редактирования и сохранения профиля//
 openPopupButton.addEventListener('click', () => {
-  openPopupWithButton(popupProfileEdit);
+  openPopup(popupProfileEdit);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
+  profileFormValidator.hideErrors();
+  profileFormValidator.disableButton();
 });
 
 popups.forEach((popup) => {
@@ -116,12 +107,12 @@ closeButtons.forEach((button) => {
 });
 
 //Popup добавления карточи//
-
 addCardButton.addEventListener('click', () => {
-  openPopupWithButton(popupCardAdd);
+  openPopup(popupCardAdd);
   cardAddForm.reset();
+  cardAddFormValidator.hideErrors();
+  cardAddFormValidator.disableButton();
 });
 
 profileForm.addEventListener('submit', handleFormSubmit);
-
 cardAddForm.addEventListener('submit', handleFormCardAddSubmit);

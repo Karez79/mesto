@@ -13,49 +13,45 @@ export class FormValidator {
         this._submitButton = this._form.querySelector(this._submitButtonSelector);
     }
 
-    _getTextLengthMessage(input) {
-        const length = input.value.length;
-        if (input.type === 'url') {
-            return 'Введите адрес сайта.'
-        } else if (length === 0) {
-            return 'Вы пропустили это поле.'
-        } else {
-            return `Минимальное количество символов: 2. Длина текста сейчас ${length === 1 ? `${length} символ` : `${length} символа` }`
-        }
-    }
-
-    _showInputError (input, errorElement) {
+    _showInputError (input, errorElement, errorMessage) {
         input.classList.add(this._errorClass);
-        errorElement.textContent = this._getTextLengthMessage(input);
+        errorElement.textContent = errorMessage;
     }
     _hideInputError (input, errorElement) {
         input.classList.remove(this._errorClass);
         errorElement.textContent = "";
     }
-    _disableButton () {
+    _enableButton () {
         this._submitButton.classList.remove(this._inactiveButtonClass);
         this._submitButton.disabled = false;
     }
-    _enableButton () {
+    disableButton() {
         this._submitButton.classList.add(this._inactiveButtonClass);
         this._submitButton.disabled = true;
     }
 
+    _getErrorElement(input) {
+        return this._form.querySelector(`${this._textErrorClass}${input.name}`)
+    }
+
     _checkInputValidity (input) {
-        const errorElement = document.querySelector(`${this._textErrorClass}${input.name}`);
         if (!input.validity.valid) {
-            this._showInputError(input, errorElement);
+            this._showInputError(input, this._getErrorElement(input), input.validationMessage);
         } else {
-            this._hideInputError(input, errorElement);
+            this._hideInputError(input, this._getErrorElement(input));
         }
     }
-    _toggleButton () {
+
+    _getInvalidInputs() {
         const inputListArray = [...this._inputList];
-        const noInvalidInputs = inputListArray.filter(input => !input.validity.valid).length === 0;
-        if (noInvalidInputs) {
-            this._disableButton();
-        } else {
+        return inputListArray.filter(input => !input.validity.valid).length === 0;
+    }
+
+    _toggleButton () {
+        if (this._getInvalidInputs()) {
             this._enableButton();
+        } else {
+            this.disableButton();
         }
     }
 
@@ -69,11 +65,8 @@ export class FormValidator {
     }
 
     hideErrors() {
-        console.error('hideErrors');
         this._inputList.forEach(input => {
-            const errorElement = document.querySelector(`${this._textErrorClass}${input.name}`);
-            input.classList.remove(this._errorClass);
-            errorElement.textContent = "";
+            this._hideInputError(input, this._getErrorElement(input));
         })
     }
 
