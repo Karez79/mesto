@@ -1,7 +1,7 @@
 .popup__close-zoombutton {
     width: 32px;
     height: 32px;
-    background: url(../../../images/Close\ Icon.svg) center no-repeat;
+    background: url(../../../images/closeIcon.svg) center no-repeat;
     border: none;
     position: absolute;
   top: -40px;
