@@ -2,23 +2,22 @@
 <html lang="ru">
 
 <head>
-    <link rel="stylesheet" href="./pages/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="<%=require('./images/favicon.ico')%>">
     <title>Место</title>
 </head>
 
 <body class="page">
 
     <header class="header">
-        <a class="header__link" href="https://karez79.github.io/mesto/"> <img src="./images/logo/logo.svg"
+        <a class="header__link" href="https://karez79.github.io/mesto/"> <img src="<%=require('./images/logo/logo.svg')%>"
                 class="header__logo" alt="Логотип Место."></a>
     </header>
 
     <main class="content">
         <section class="profile">
-            <img class="profile__avatar" src="./images/avatar.png" alt="Фото профиля.">
+            <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Фото профиля.">
 
             <div class="profile__info">
                 <div class="profile__container">
@@ -64,8 +63,8 @@
             <form name="popup__form" class="popup__form" id="cardform"  novalidate>
                 <input type="text" minlength="2" maxlength="30" class="popup__input popup__input_type_name" name="name" placeholder="Название" required>
                 <span class="popup__input-error popup__input-error_type_name"></span>
-                <input type="url" class="popup__input popup__input_type_linkimage" name="linkimage" placeholder="Ссылка на картинку" required>
-                <span class="popup__input-error popup__input-error_type_linkimage"></span>
+                <input type="url" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку" required>
+                <span class="popup__input-error popup__input-error_type_link"></span>
                 <button type="submit" class="popup__button popup__create-button popup__button_disabled">Создать</button>
             </form>
         </div>
@@ -93,11 +92,6 @@
         </li>
 
     </template>
-
-    <script src="./scripts/index.js" type="module"></script>
-
-
-
 </body>
 
 </html>
