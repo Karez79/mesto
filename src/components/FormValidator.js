@@ -74,4 +74,9 @@ export class FormValidator {
         this._defineElements();
         this._setEventListeners();
     }
+
+    resetValidation() {
+        this.hideErrors();
+        this.disableButton();
+    }
 }

@@ -5,12 +5,8 @@ import {
   cardTemplate,
   formConfig,
   initialCards,
-  openPopupButton,
+  openProfileEditButton,
   profileForm,
-  titleInput,
-  subtitleInput,
-  profileTitle,
-  profileSubtitle,
 } from "../scripts/constants.js";
 
 import {Card} from "../components/Card.js";
@@ -20,20 +16,27 @@ import {PopupWithImage} from "../components/PopupWithImage.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
 import {UserInfo} from "../components/UserInfo.js";
 
-const profileFormValidator = new FormValidator(formConfig, profileForm);
-profileFormValidator.enableValidation();
-const cardAddFormValidator = new FormValidator(formConfig, cardAddForm);
-cardAddFormValidator.enableValidation();
+const formValidators = {};
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach(formElement => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  })
+}
+
+enableValidation(formConfig);
 
 const popupBigPhoto = new PopupWithImage('#zoomfoto');
 popupBigPhoto.setEventListeners();
 
-const userInfo = new UserInfo({titleId: '.popup__input_type_title', subtitleId: '.popup__input_type_subtitle'});
+const userInfo = new UserInfo({nameId: '.profile__name', aboutId: '.profile__about'});
 
 function handleFormSubmit(inputValues) {
-  userInfo.setUserInfo(inputValues.title, inputValues.subtitle);
-  profileTitle.textContent = userInfo.getUserInfo()['title'];
-  profileSubtitle.textContent = userInfo.getUserInfo()['subtitle'];
+  userInfo.setUserInfo(inputValues.name, inputValues.about);
 }
 
 function createCard(photoCard) {
@@ -58,21 +61,14 @@ popupCardAdd.setEventListeners();
 popupProfileEdit.setEventListeners();
 
 //Popup редактирования и сохранения профиля//
-openPopupButton.addEventListener('click', () => {
+openProfileEditButton.addEventListener('click', () => {
   popupProfileEdit.open();
-  if (profileTitle.textContent || profileSubtitle.textContent) {
-    userInfo.setUserInfo(profileTitle.textContent, profileSubtitle.textContent);
-  }
-  titleInput.value = userInfo.getUserInfo()['title'];
-  subtitleInput.value = userInfo.getUserInfo()['subtitle'];
-  profileFormValidator.hideErrors();
-  profileFormValidator.disableButton();
+  popupProfileEdit.setInputValues(userInfo.getUserInfo());
+  formValidators[profileForm.getAttribute('name')].resetValidation();
 });
 
 //Popup добавления карточки//
 addCardButton.addEventListener('click', () => {
   popupCardAdd.open();
-  cardAddForm.reset();
-  cardAddFormValidator.hideErrors();
-  cardAddFormValidator.disableButton();
+  formValidators[cardAddForm.getAttribute('name')].resetValidation();
 });

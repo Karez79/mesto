@@ -34,11 +34,7 @@ const initialCards = [
     }
 ];
 
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
-const openPopupButton = document.querySelector('.profile__edit-button');
-const titleInput = document.querySelector('.popup__input_type_title');
-const subtitleInput = document.querySelector('.popup__input_type_subtitle');
+const openProfileEditButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 const cardTemplate = document.querySelector('#cardTemplate');
 
@@ -47,6 +43,7 @@ const profileForm = document.querySelector('#profileForm');
 const cardAddForm = document.querySelector('#cardform');
 
 const formConfig = {
+    formSelector: ".popup__form",
     inputSelector: ".popup__input",
     submitButtonSelector: ".popup__button",
     inactiveButtonClass: "popup__button_disabled",
@@ -56,11 +53,7 @@ const formConfig = {
 
 export {
     initialCards,
-    profileTitle,
-    profileSubtitle,
-    openPopupButton,
-    titleInput,
-    subtitleInput,
+    openProfileEditButton,
     addCardButton,
     cardTemplate,
     profileForm,

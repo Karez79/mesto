@@ -1,18 +1,18 @@
 export class UserInfo {
-  constructor({titleId, subtitleId}) {
-    this._titleId = document.querySelector(titleId);
-    this._subtitleId = document.querySelector(subtitleId);
+  constructor({nameId, aboutId}) {
+    this._name = document.querySelector(nameId);
+    this._about = document.querySelector(aboutId);
   };
 
   getUserInfo() {
     return {
-      title: this._titleId.value,
-      subtitle: this._subtitleId.value,
+      name: this._name.textContent,
+      about: this._about.textContent,
     };
   }
 
-  setUserInfo(title, subtitle) {
-    this._titleId.value = title;
-    this._subtitleId.value = subtitle;
+  setUserInfo = (name, about) => {
+    this._name.textContent = name;
+    this._about.textContent = about;
   }
 }
