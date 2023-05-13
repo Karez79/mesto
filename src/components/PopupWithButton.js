@@ -23,14 +23,9 @@ export class PopupWithButton extends Popup {
     });
   }
 
-  setButtonPending() {
-    this._button.textContent = `${this._buttonText}...`;
-    this._button.disabled = true;
-  }
-
-  resetButton() {
-    this._button.textContent = this._buttonText;
-    this._button.disabled = false;
+  renderLoading(isDisabled, text) {
+    this._button.disabled = isDisabled;
+    this._button.textContent = text || this._buttonText;
   }
 }
 

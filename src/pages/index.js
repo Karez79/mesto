@@ -20,10 +20,8 @@ import {UserInfo} from '../components/UserInfo.js';
 import {Api} from '../components/Api.js';
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65',
-    headers: {
-        authorization: 'bad0a43e-1805-4faf-8465-a8ef0cb6b6aa',
-        'Content-Type': 'application/json',
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65', headers: {
+        authorization: 'bad0a43e-1805-4faf-8465-a8ef0cb6b6aa', 'Content-Type': 'application/json',
     },
 });
 
@@ -45,98 +43,81 @@ const popupBigPhoto = new PopupWithImage('#zoomfoto');
 popupBigPhoto.setEventListeners();
 
 const userInfo = new UserInfo({
-    nameId: '.profile__name',
-    aboutId: '.profile__about',
-    avatarId: '.profile__avatar',
+    nameId: '.profile__name', aboutId: '.profile__about', avatarId: '.profile__avatar',
 });
 
 const section = new Section({renderer: createCard}, '.cards');
 
-const popupCardAdd = new PopupWithForm(
-    '#cardADD',
-    handleCardAddFormSubmit
-);
-const popupProfileEdit = new PopupWithForm(
-    '#profileEdit',
-    handleProfileFormSubmit
-);
-const popupAvatarEdit = new PopupWithForm(
-    '#avatarEdit',
-    handleAvatarFormSubmit
-);
+const popupCardAdd = new PopupWithForm('#cardADD', handleCardAddFormSubmit);
+const popupProfileEdit = new PopupWithForm('#profileEdit', handleProfileFormSubmit);
+const popupAvatarEdit = new PopupWithForm('#avatarEdit', handleAvatarFormSubmit);
 popupCardAdd.setEventListeners();
 popupProfileEdit.setEventListeners();
 popupAvatarEdit.setEventListeners();
 
-const popupCardDelete = new PopupWithButton(
-    '#cardDelete',
-    handleCardDelete
-);
+const popupCardDelete = new PopupWithButton('#cardDelete', handleCardDelete);
 popupCardDelete.setEventListeners();
 
-api
-    .getProfile()
-    .then((res) => {
-        // обрабатываем результат
-        userInfo.setUserInfo(res.name, res.about, res.avatar, res._id);
+Promise.all([api.getProfile(), api.getInitialCards()])
+    .then(([userData, cards]) => {
+        userInfo.setUserInfo(userData);
+        section.renderElements(cards);
     })
     .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
     });
 
-function handleProfileFormSubmit(data) {
-    popupProfileEdit.setSubmitButtonPending();
-    api
-        .editProfile(data)
-        .then((result) => {
-            // обрабатываем результат
-            userInfo.setUserInfo(result.name, result.about, result.avatar);
-            popupProfileEdit.close();
+function handleSubmit(request, popupInstance, loadingText = "Сохранение...") {
+    popupInstance.renderLoading(true, loadingText);
+    request()
+        .then(() => {
+            popupInstance.close()
         })
         .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
+            console.error(`Ошибка: ${err}`);
         })
         .finally(() => {
-            popupProfileEdit.resetSubmitButton();
+            popupInstance.renderLoading(false);
         });
 }
 
-function handleAvatarFormSubmit(data) {
-    popupAvatarEdit.setSubmitButtonPending();
-    api
-        .editAvatar(data.avatar)
-        .then((result) => {
-            // обрабатываем результат
+function handleProfileFormSubmit(inputValues) {
+    function makeRequest() {
+        return api.editProfile(inputValues).then((userData) => {
+            userInfo.setUserInfo(userData)
+        });
+    }
+
+    handleSubmit(makeRequest, popupProfileEdit);
+}
+
+function handleAvatarFormSubmit(inputValues) {
+    function makeRequest() {
+        return api.editAvatar(inputValues.avatar).then((result) => {
             userInfo.setAvatar(result.avatar);
-            popupAvatarEdit.close();
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-        })
-        .finally(() => {
-            popupAvatarEdit.resetSubmitButton();
         });
+    }
+
+    handleSubmit(makeRequest, popupAvatarEdit);
 }
 
-function handleCardAddFormSubmit(data) {
-    const card = {
-        name: data.name,
-        link: data.link,
-    };
-    popupCardAdd.setSubmitButtonPending();
-    api
-        .addCard(card)
-        .then((result) => {
-            // обрабатываем результат
+function handleCardAddFormSubmit(inputValues) {
+    function makeRequest() {
+        return api.addCard(inputValues).then((result) => {
             section.addItem(result);
-            popupCardAdd.close();
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-        })
-        .finally(() => {
-            popupCardAdd.resetSubmitButton();
         });
+    }
+
+    handleSubmit(makeRequest, popupCardAdd);
+}
+function handleCardDelete(cardId, deleteCard) {
+    function makeRequest() {
+        return api.deleteCard(cardId).then(() => {
+            deleteCard();
+        });
+    }
+
+    handleSubmit(makeRequest, popupCardDelete, 'Удаление...');
 }
 
 function handleLike(cardId, changeLikesCounter, changeLikeStatus, isCardLiked) {
@@ -147,7 +128,7 @@ function handleLike(cardId, changeLikesCounter, changeLikeStatus, isCardLiked) {
                 changeLikeStatus();
             })
             .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
+                console.log(err);
             })
     } else {
         api.addLike(cardId)
@@ -156,39 +137,14 @@ function handleLike(cardId, changeLikesCounter, changeLikeStatus, isCardLiked) {
                 changeLikeStatus();
             })
             .catch((err) => {
-                console.log(err); // выведем ошибку в консоль
+                console.log(err);
             })
     }
-}
-
-function handleCardDelete(cardId, deleteCard) {
-    popupCardDelete.setButtonPending();
-    api.deleteCard(cardId)
-        .then((result) => {
-            deleteCard();
-            popupCardDelete.close();
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-        })
-        .finally(() => {
-            popupCardDelete.resetButton();
-        });
 }
 
 function createCard(photoCard) {
     return new Card(photoCard, cardTemplate, popupBigPhoto.open, handleLike, popupCardDelete.open, userInfo.getUserId()).createCard();
 }
-
-api
-    .getInitialCards()
-    .then((result) => {
-        // обрабатываем результат
-        section.renderElements(result);
-    })
-    .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-    });
 
 //Popup редактирования и сохранения профиля//
 openProfileEditButton.addEventListener('click', () => {

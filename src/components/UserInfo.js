@@ -17,11 +17,11 @@ export class UserInfo {
     return this._userId;
   }
 
-  setUserInfo = (name, about, avatar, userId) => {
+  setUserInfo = ({name, about, avatar, _id}) => {
     this._name.textContent = name;
     this._about.textContent = about;
     this.setAvatar(avatar);
-    this._userId = userId;
+    this._userId = _id;
   }
 
   setAvatar = (avatar) => {

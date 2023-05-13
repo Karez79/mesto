@@ -33,14 +33,9 @@ export class PopupWithForm extends Popup {
     });
   }
 
-  setSubmitButtonPending() {
-    this._submitButton.textContent = `${this._submitButtonText}...`;
-    this._submitButton.disabled = true;
-  }
-
-  resetSubmitButton() {
-    this._submitButton.textContent = this._submitButtonText;
-    this._submitButton.disabled = false;
+  renderLoading(isDisabled, text) {
+    this._submitButton.disabled = isDisabled;
+    this._submitButton.textContent = text || this._submitButtonText;
   }
 
   close() {

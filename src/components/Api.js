@@ -10,101 +10,79 @@ export class Api {
         }
 
         // если ошибка, отклоняем промис
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return Promise.reject(new Error(`Ошибка: ${res.status}`));
+    }
+
+    _request(endpoint, options) {
+        const url = `${this._baseUrl}/${endpoint}`;
+        return fetch(url, options).then(this._checkRes);
     }
 
     getProfile() {
-        return fetch(`${this._baseUrl}/users/me`, {
+        return this._request('users/me', {
             method: "GET",
             headers: this._headers
-        })
-            .then(res => {
-                return this._checkRes(res);
-            });
+        });
 
     }
 
     editProfile(profile) {
-        return fetch(`${this._baseUrl}/users/me`, {
+        return this._request(`users/me`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
                 name: profile.name,
                 about: profile.about,
             })
-
-        })
-        .then(res => {
-            return this._checkRes(res);
         });
     }
 
     editAvatar(avatarLink) {
-        return fetch(`${this._baseUrl}/users/me/avatar`, {
+        return this._request(`users/me/avatar`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
                 avatar: avatarLink,
             })
-
-        })
-            .then(res => {
-                return this._checkRes(res);
-            });
-
+        });
     }
 
     getInitialCards() {
-        return fetch(`${this._baseUrl}/cards`, {
+        return this._request(`cards`, {
             method: "GET",
             headers: this._headers
-        })
-            .then(res => {
-                return this._checkRes(res);
-            });
+        });
     }
 
     addCard(card) {
-        return fetch(`${this._baseUrl}/cards`, {
+        return this._request(`cards`, {
             method: "POST",
             headers: this._headers,
             body: JSON.stringify({
                 name: card.name,
                 link: card.link,
             })
-        })
-            .then(res => {
-                return this._checkRes(res);
-            });
+        });
     }
 
     deleteCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+        return this._request(`cards/${cardId}`, {
             method: "DELETE",
-            headers: this._headers
-        })
-            .then(res => {
-                return this._checkRes(res);
-            });
+            headers: this._headers,
+        });
     }
 
     addLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+        return this._request(`cards/${cardId}/likes`, {
             method: "PUT",
-            headers: this._headers
-        })
-            .then(res => {
-                return this._checkRes(res);
-            });
+            headers: this._headers,
+        });
     }
 
     deleteLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+        return this._request(`cards/${cardId}/likes`, {
             method: "DELETE",
             headers: this._headers
-        })
-            .then(res => {
-                return this._checkRes(res);
-            });
+        });
     }
 }
